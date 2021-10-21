@@ -1,0 +1,55 @@
+.shareContainer{
+    margin-top: 12vh;
+}
+.card{
+    width:84%;
+    margin-left: 5%;
+    margin-top: 10%;
+    margin-right: 5%;
+    box-shadow: 5px 5px 8px -3px rgba(0,0,0,0.74);
+}
+
+
+
+.shareProfileImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .inputField{
+      width:calc(100% - 80px) ;
+
+  }
+
+  
+.shareBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 13px;
+  }
+  
+  .shareOptions{
+      display: flex;
+      margin-left: 20px;
+  }
+  
+  .shareOption{
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+      cursor: pointer;
+  }
+  
+  .shareIcon{
+      font-size: 18px;
+      margin-right: 3px;
+  }
+  
+  .shareOptionText{
+      font-size: 14px;
+      font-weight: 500;
+  }

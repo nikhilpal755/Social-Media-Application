@@ -1,0 +1,49 @@
+.sidebar{
+    width: 20vw;
+    margin-top: 9vh;
+    position: fixed;
+    overflow-y: scroll;
+    height: 100vh;
+    z-index: 100;
+
+}
+::-webkit-scrollbar{
+    display: block;
+    width: 6px;
+}
+::-webkit-scrollbar-track{
+    background-color: #dde1e7;
+    margin-bottom: -1px;
+  
+}
+::-webkit-scrollbar-thumb{
+    background-color:  rgb(68, 68, 68);
+}
+
+
+/*
+::-webkit-scrollbar-track-piece:end{
+    background-color: rgb(68, 68, 68);
+    margin-bottom: 10px;
+}
+::-webkit-scrollbar-track-piece:start{
+    background-color: rgb(68, 68, 68);
+    margin-top: 10px;
+} */
+.listIcon{
+    display: flex;
+    margin-left: 6%;
+    padding: 2.5%;
+}
+#btn{
+    margin: 20px 30px 30px 20px;
+    background-color: rgb(68, 68, 68);
+}
+
+.sideBarFriend{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: contain ;
+    margin-right: 20px;
+}
