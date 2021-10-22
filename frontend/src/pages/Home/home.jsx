@@ -3,14 +3,17 @@ import Navbar from "../../components/navbar/navbar"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Rightbar from "../../components/rightbar/Rightbar"
 import Feed from "../../components/feed/Feed"
-import { Grid } from "@mui/material"
+import { Grid, useMediaQuery } from "@mui/material"
 import "./home.css" 
-export default function home() {
+
+export default function Home() {
+    const mediaLessthanmd = useMediaQuery('(max-width: 900px)');
+    console.log(mediaLessthanmd);
     return (
         <div>
            <Navbar/>
            <div className="homecontainer">
-               <Sidebar className="sideBar"/>
+               { !mediaLessthanmd && <Sidebar/>}
                <div className="scrolling">
                    <Grid item xs={6} md={8}>
                         <Feed/>
