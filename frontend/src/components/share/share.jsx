@@ -58,6 +58,7 @@ export default function Share() {
 
 
 const handleFileUpload = async (e) => {
+  if(!e.target.files[0])return;
 
   setFile(e.target.files[0]);
 
@@ -67,7 +68,9 @@ const handleFileUpload = async (e) => {
 const handleSubmit = async (e) => {
 
   // console.log(file);
+
   e.preventDefault();
+  if(!imageUrl)return;
 
   const newPost = {
     userId: user._id,
@@ -127,7 +130,7 @@ return (
             <span className="shareOptionText">Feelings</span>
           </div>
 
-          <Button variant="contained" type="submit">Share</Button>
+          <Button variant="contained" type="submit" color="primary">Share</Button>
         </form>
 
 

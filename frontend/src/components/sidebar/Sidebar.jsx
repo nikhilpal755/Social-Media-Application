@@ -1,5 +1,5 @@
 import React from 'react'
-import "./sidebar.css"
+// import "./sidebar.css"
 //import list
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -22,17 +22,57 @@ import Button from "@mui/material/Button"
 
 import Closefriend from '../closefriend/closefriend';
 import { useHistory } from 'react-router';
+import {makeStyles} from "@mui/styles"
 
+
+
+const useStyles = makeStyles(() =>({
+    '@global': {
+        '*::-webkit-scrollbar': {
+          width: '0.5em'
+        },
+        '*::-webkit-scrollbar-track': {
+          '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: ' rgb(68, 68, 68)',
+        //   outline: '1px solid grey'
+        }
+      },
+     sidebar : {
+        width :'20vw',
+        marginTop : '9vh',
+        position: 'fixed',
+        height: '100vh',
+        zIndex : '100',
+        overflowY : 'scroll'
+    },
+    listIcon: {
+        // display : 'flex',    
+        marginLeft : '4%',
+        padding: '4% 0 4% 0',
+
+
+    },
+    btn : {
+        margin : '20px 30px 30px 20px',
+        backgroundColor : 'rgb(68, 68, 68)'
+    }
+    
+
+
+}))
 
 function Sidebar() {
+    const classes = useStyles();
     const history = useHistory();
     return (
-        <div className="sidebar">
+        <div className={classes.sidebar}>
             <nav >
                 <List>
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => history.push("/")}>
-                            <ListItemIcon class="listIcon">
+                            <ListItemIcon className={classes.listIcon}>
                                 <RssFeedIcon />
                             </ListItemIcon>
                             <ListItemText primary="Feed" />
@@ -40,7 +80,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon class="listIcon">
+                            <ListItemIcon className={classes.listIcon}>
                                 <PlayCircleOutlineIcon />
                             </ListItemIcon>
                             <ListItemText primary="Vedios" />
@@ -48,7 +88,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => history.push("/chat")}>
-                            <ListItemIcon class="listIcon">
+                            <ListItemIcon className={classes.listIcon}>
                                 <ChatIcon />
                             </ListItemIcon>
                             <ListItemText primary="Chats" />
@@ -56,7 +96,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon class="listIcon">
+                            <ListItemIcon className={classes.listIcon}>
                                 <GroupIcon />
                             </ListItemIcon>
                             <ListItemText primary="Groups" />
@@ -64,7 +104,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon class="listIcon">
+                            <ListItemIcon className={classes.listIcon}>
                                 <BookmarkIcon />
                             </ListItemIcon>
                             <ListItemText primary="Bookmark" />
@@ -72,7 +112,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon class="listIcon"      >
+                            <ListItemIcon className={classes.listIcon}   >
                                 <EventIcon />
                             </ListItemIcon>
                             <ListItemText primary="Events" />
@@ -80,7 +120,7 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon class="listIcon"      >
+                            <ListItemIcon className={classes.listIcon}   >
                                 <SchoolIcon />
                             </ListItemIcon>
                             <ListItemText primary="Courses" />
@@ -88,7 +128,7 @@ function Sidebar() {
                     </ListItem>
                 </List>
             </nav>
-            <Button variant="contained" id="btn">Show More</Button>
+            <Button variant="contained" className={classes.btn}>Show More</Button>
             <Divider />
             
             <Closefriend/>
