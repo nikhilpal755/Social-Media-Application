@@ -7,8 +7,6 @@ import axios from "axios";
 import {useState , useEffect , useContext} from "react"
 import {AuthContext} from "../../context/authContext"
 
-// import {Posts} from "../../data";
-// we don't use dummy data , we will fetch data from api 
 
 function Feed({username}) {
     const [posts, setPosts] = useState([]);
