@@ -1,4 +1,4 @@
-
+frontend/src/components/feed/Feed.jsx
 import "./navbar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
@@ -6,7 +6,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
 
 
-import { Button, IconButton} from "@mui/material";
+import { Button, IconButton, useMediaQuery} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles"
@@ -16,7 +16,9 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
 import { AuthContext } from "../../context/authContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import TempararyDrawer from "../../components/Drawer/drawer"
+import DehazeIcon from '@mui/icons-material/Dehaze';
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -35,6 +37,10 @@ export default function Navbar() {
     const {user} =  useContext(AuthContext);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const history = useHistory();
+    const mediaLessthanmd = useMediaQuery('(max-width : 900px)');
+    const [openSlider, setOpenSlider] = useState(false);
+
+    
    
 
     const handleLogoutClick =() =>{
@@ -44,7 +50,13 @@ export default function Navbar() {
     return (
         <>
             <div className="nav-container">
-                <div className="nav-left">
+                <div className="nav-left" style={{display : 'flex'}}>
+                    {mediaLessthanmd && !openSlider && (
+                    <IconButton onClick={() => setOpenSlider(!openSlider)}><DehazeIcon style={{color : "white"}}/></IconButton> )}
+                    {openSlider && mediaLessthanmd && (
+                        <TempararyDrawer/>
+                    )
+                    }
                     <Link to="/" style={{textDecoration:"none",textShadow: "3px 3px blue",}}>
                          <span className="logo">SocioNik</span>
                     </Link>
