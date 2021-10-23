@@ -6,7 +6,7 @@ const io = new Server(8888 , {
     },
 })
 
-let users = [];
+let users = [];//store current online users - {userId, socketId}
 
 const addUser = (userId , socketId) =>{
     !users.some((user) => user.userId === userId) &&

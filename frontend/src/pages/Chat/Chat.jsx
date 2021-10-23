@@ -15,7 +15,6 @@ import Message from '../../components/message/message'
 
 
 import { AuthContext } from '../../context/authContext';
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 
 const useStyles = makeStyles(() => ({
     chatContainer: {
@@ -99,11 +98,11 @@ export default function Chat() {
      })
     }, [])
 
-    // connect , disconnect , and online users
+    //  online users
     useEffect(()=>{
         socket.current.emit("addUser" ,user._id);
         socket.current.on("getUsers" , (users) =>{
-            console.log(users);
+            // console.log(users);
             setOnlineUsers(
                 user.following.filter((f) => users.some((u) => u.userId === f))
             )
@@ -122,7 +121,7 @@ export default function Chat() {
 
 
 
-    // fetching loginUser conversations
+    // fetching loginUser conversations (Recents Chats)
     useEffect(() => {
         const getConversations = async () => {
             try {

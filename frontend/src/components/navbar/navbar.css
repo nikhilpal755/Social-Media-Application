@@ -36,18 +36,6 @@
     color: white;
   }
 
-  /* .nav-links{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-  
-  .nav-link {
-    margin-right: 15px;
-    font-family: 'roboto';
-    font-size: 14px;
-    cursor: pointer;
-  } */
   
   .nav-icons {
     display: flex;
@@ -55,15 +43,3 @@
   }
 
 
- 
-  /* .navbarImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    margin-right: 10%;
-  } */
-  /* .icon{
-    color: white;
-  } */

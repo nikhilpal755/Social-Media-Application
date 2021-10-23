@@ -53,6 +53,7 @@ export default function Post({ post }) {
 
 
   const  handleLike = async()=>{
+    if(post.userId === user._id)return;
     try{
       await axios.put(`/posts/${post._id}/like` , {userId : user._id} )
     }catch(err){}
