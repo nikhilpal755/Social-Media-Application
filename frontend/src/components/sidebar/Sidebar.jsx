@@ -1,5 +1,4 @@
 import React from 'react'
-// import "./sidebar.css"
 //import list
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -51,6 +50,7 @@ const useStyles = makeStyles(() =>({
         // display : 'flex',    
         marginLeft : '4%',
         padding: '4% 0 4% 0',
+        color : 'black'
 
 
     },

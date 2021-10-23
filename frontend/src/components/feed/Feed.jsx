@@ -3,6 +3,7 @@ import "./feed.css"
 import Share from '../share/share'
 import Post from '../post/post'
 import axios from "axios";
+import { useMediaQuery } from "@mui/material"
 
 import {useState , useEffect , useContext} from "react"
 import {AuthContext} from "../../context/authContext"
@@ -11,6 +12,8 @@ import {AuthContext} from "../../context/authContext"
 function Feed({username}) {
     const [posts, setPosts] = useState([]);
     const {user} = useContext(AuthContext);
+    const mediaLessthanmd = useMediaQuery('(max-width: 900px)');
+
 
     useEffect(() => {
         const fetchPosts = async() =>{
@@ -25,8 +28,8 @@ function Feed({username}) {
         fetchPosts();
     }, [username , user._id])
     return (
-        <div className="feed">
-            <div className="feedWrapper">
+        <div style={{marginLeft : !mediaLessthanmd ? '5vw' : '0vw'}}>
+            <div>
                 {!username && <Share/>}
                 { (user.username === username) && <Share/> }
                 {

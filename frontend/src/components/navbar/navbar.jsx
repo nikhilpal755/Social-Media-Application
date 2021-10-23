@@ -1,4 +1,4 @@
-frontend/src/components/feed/Feed.jsx
+
 import "./navbar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';

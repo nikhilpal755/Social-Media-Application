@@ -14,7 +14,7 @@ export default function Home() {
            <Navbar/>
            <div className="homecontainer">
                { !mediaLessthanmd && <Sidebar/>}
-               <div className="scrolling">
+               <div style={{display: 'flex' , width : '100%' , height : '100%', marginLeft:!mediaLessthanmd && '17vw' }} >
                    <Grid item xs={6} md={8}>
                         <Feed/>
                    </Grid>

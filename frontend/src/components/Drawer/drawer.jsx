@@ -10,12 +10,21 @@ import MailIcon from "@mui/icons-material/Mail";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import { IconButton } from "@mui/material";
 import Sidebar from "../sidebar/Sidebar";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() =>({
+    paper : {
+       
+    }
+}))
 
 export default function TemporaryDrawer() {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const classes = useStyles();
+
 
   const list = () => (
-    <Box sx={{ width: 250 }} role="presentation">
+    <Box sx={{ width: 250 , backgroundColor : '#dde1e7', height : '100vh'}} role="presentation">
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem button key={text}>
@@ -31,11 +40,11 @@ export default function TemporaryDrawer() {
 
   return !openDrawer ? (
     <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-      <DehazeIcon />
+      <DehazeIcon style={{color : 'white'}}/>
     </IconButton>
   ) : (
-    <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
-       <Sidebar/>
+    <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)} className={classes.paper} >
+       {list()}
     </Drawer>
   );
 }
