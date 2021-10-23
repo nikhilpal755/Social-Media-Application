@@ -11,13 +11,7 @@ function Rightbar() {
     return (
         <div className="rightbar">
             <div className="rightBarTop">
-            
-                {/* <div className="birthdayContainer">
-                    <img className="birthdayImg" src="assets/gift.png" alt="" />
-                    <span className="birthdayText">
-                        <b>Nikhil</b> and <b>3 other friends</b> have a birhday today.
-                    </span>
-                </div> */}
+
 
                 <h4> Friends Online</h4>
                 <div className="friendsList">

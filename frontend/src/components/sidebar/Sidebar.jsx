@@ -22,6 +22,7 @@ import Button from "@mui/material/Button"
 import Closefriend from '../closefriend/closefriend';
 import { useHistory } from 'react-router';
 import {makeStyles} from "@mui/styles"
+import { useMediaQuery } from '@mui/material';
 
 
 
@@ -39,12 +40,12 @@ const useStyles = makeStyles(() =>({
         }
       },
      sidebar : {
-        width :'20vw',
         marginTop : '9vh',
         position: 'fixed',
         height: '100vh',
         zIndex : '100',
-        overflowY : 'scroll'
+        overflowY : 'scroll',
+        backgroundColor : "#dde1e7"
     },
     listIcon: {
         // display : 'flex',    
@@ -55,7 +56,7 @@ const useStyles = makeStyles(() =>({
 
     },
     btn : {
-        margin : '20px 30px 30px 20px',
+        margin : "20px 30px 30px 20px",
         backgroundColor : 'rgb(68, 68, 68)'
     }
     
@@ -66,11 +67,11 @@ const useStyles = makeStyles(() =>({
 function Sidebar() {
     const classes = useStyles();
     const history = useHistory();
+    const mediaLessthanmd = useMediaQuery('(max-width: 1100px)')
     return (
-        <div className={classes.sidebar}>
-            <nav >
+        <div className={classes.sidebar} style={{  width :mediaLessthanmd ? '40vw' : '20vw'}}>
                 <List>
-                    <ListItem disablePadding>
+                    <ListItem disablePadding >
                         <ListItemButton onClick={() => history.push("/")}>
                             <ListItemIcon className={classes.listIcon}>
                                 <RssFeedIcon />
@@ -127,7 +128,7 @@ function Sidebar() {
                         </ListItemButton>
                     </ListItem>
                 </List>
-            </nav>
+     
             <Button variant="contained" className={classes.btn}>Show More</Button>
             <Divider />
             

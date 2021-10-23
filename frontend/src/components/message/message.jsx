@@ -3,6 +3,7 @@ import { format } from 'timeago.js'
 import { makeStyles } from '@mui/styles'
 import Avatar from '@mui/material/Avatar'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 const useStyles = makeStyles(() => ({
@@ -63,6 +64,7 @@ const useStyles = makeStyles(() => ({
 export default function Message({ message, own }) {
     const classes = useStyles();
     const [avtaar, setAvtaar] = useState("");
+    const [userName , setUserName] = useState(null);
     // console.log(own);
     useEffect(() =>{
         const getAvtaar = async() =>{
@@ -70,6 +72,7 @@ export default function Message({ message, own }) {
                const res = await axios.get(`/users?userId=${message.sender}`);
             //    console.log(res.data);
                setAvtaar(res.data.profilePicture);
+               setUserName(res.data.username);
                
             }catch(err){
                 console.log(err);
@@ -80,11 +83,16 @@ export default function Message({ message, own }) {
 
     },[message])
 
+
     // console.log(message, own);
+    console.log(avtaar);
     return (
+        
         <div className={classes.messageContainer}>
             <div className ={ own ? classes.message : classes.ownMessage }>
-                <Avatar alt="" src={avtaar}></Avatar>
+                <Link to={`profile/${userName}`}>
+                    <Avatar alt="" src={avtaar} style={{cursor : 'pointer'}}/>
+                </Link>
                 <p className={own ? classes.ownMessageText :  classes.messageText}>{message.text}</p>
                  <div className={own ? classes.ownMessageBottom : classes.messageBottom}>{format(message.createdAt)}</div>
             </div>

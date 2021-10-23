@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
-import { TextField } from '@mui/material'
+import { TextField, useMediaQuery } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material'
@@ -15,6 +15,7 @@ import Message from '../../components/message/message'
 
 
 import { AuthContext } from '../../context/authContext';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 
 const useStyles = makeStyles(() => ({
     chatContainer: {
@@ -26,20 +27,9 @@ const useStyles = makeStyles(() => ({
     chatBox: {
         flex: '6',
         height: '100%',
-        backgroundColor: 'rgb(0, 30, 60)'
+        backgroundColor : '#111b25'
     },
 
-    leftContainer: {
-        height: '100%',
-        flex: '3',
-        // border: '2px solid red'
-    },
-    rightContainer: {
-        flex: '3',
-        height: '100%',
-
-
-    },
     converstationWrapper: {
         padding: '2%',
         display: 'flex',
@@ -52,7 +42,7 @@ const useStyles = makeStyles(() => ({
     },
     chatBoxTop: {
         height: '80vh',
-        overflowY: 'scroll',
+        overflowY : 'scroll',
         paddingRight: 10,
         paddingLeft: 10,
         scrollBehavior : 'smooth'
@@ -81,6 +71,7 @@ const useStyles = makeStyles(() => ({
 
 
 export default function Chat() {
+
     const classes = useStyles();
     const { user } = useContext(AuthContext);
     const newMessage = useRef();
@@ -92,6 +83,7 @@ export default function Chat() {
     const [arrivalMessage , setarrivalMessage] = useState(null)
 
     const [onlineUsers , setOnlineUsers] = useState([]);
+    const mediaLessthanmd = useMediaQuery('(max-width: 900px)')
 // ------------------------ Socket IO part -----------------------------------------
     const socket = useRef();
 
@@ -196,9 +188,8 @@ export default function Chat() {
         <div>
             <Navbar />
             <div className={classes.chatContainer}>
-                <div className={classes.leftContainer}>
+                <div style={{height: '100%',flex: !mediaLessthanmd ? '3': '2'}}>
                     <div className={classes.converstationWrapper}>
-
                         <TextField id="filled-basic" label="Search for friends" variant="filled" className={classes.inputFriend} style={{ marginTop: 10, marginBottom: 30 }}></TextField>
                         {conversation && conversation.map(conv => {
                             return (
@@ -240,8 +231,8 @@ export default function Chat() {
 
 
                 </div>
-                <div className={classes.rightContainer}>
-                    <Online user={user} />
+                <div style={{ flex:!mediaLessthanmd ? '3' : '0',height: '100%',}}>
+                    {!mediaLessthanmd && <Online user={user} />}
 
                 </div>
             </div>

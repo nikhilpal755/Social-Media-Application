@@ -1,5 +1,4 @@
 import React from 'react'
-import "./feed.css"
 import Share from '../share/share'
 import Post from '../post/post'
 import axios from "axios";
@@ -12,7 +11,7 @@ import {AuthContext} from "../../context/authContext"
 function Feed({username}) {
     const [posts, setPosts] = useState([]);
     const {user} = useContext(AuthContext);
-    const mediaLessthanmd = useMediaQuery('(max-width: 900px)');
+    const mediaLessthanmd = useMediaQuery('(max-width: 1100px)');
 
 
     useEffect(() => {

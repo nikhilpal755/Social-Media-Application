@@ -9,6 +9,8 @@ import { Grid } from '@mui/material'
 import axios from 'axios'
 import { useParams } from 'react-router'
 
+import { useMediaQuery } from '@mui/material'
+
 import "./profile.css"
 
 
@@ -16,6 +18,9 @@ export default function Profile() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user, setUser] = useState({});
     const userName = useParams().username;
+
+    const mediaLessthanmd = useMediaQuery('(max-width : 1100px)');
+    const mediaLessthansm = useMediaQuery('(max-width : 800px)');
 
    
 
@@ -33,8 +38,12 @@ export default function Profile() {
         <div>
             <Navbar />
             <div className="profile">
-                <Sidebar className="sideBar" />
-                <div className="profileRight">
+                {!mediaLessthanmd && <Sidebar />}
+                <div style={{
+                    flex: !mediaLessthanmd ? '9' : '12',
+                    marginLeft:!mediaLessthanmd ?  '20vw':  '0vw',
+                    marginTop : '2.5vw'
+                }}>
 
                     <div className="profileRightTop">
                         <div className="profileCover">
@@ -55,12 +64,12 @@ export default function Profile() {
                         </div>
                     </div>
                     <div className="profileRightBottom">
-                        <Grid item xs={6} md={12}>
+                        <Grid item xs={12}>
                             <ProfileInfo user={user} />
 
                         </Grid>
                         {/* <hr/> */}
-                        <Grid item xs={6} md={12}>
+                        <Grid item xs={12} >
                                  <Feed  username={userName}/>
                         </Grid>
                     </div>
