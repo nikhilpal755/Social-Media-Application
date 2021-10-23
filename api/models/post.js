@@ -16,8 +16,9 @@ const postSchema = new mongoose.Schema({
     image : {
         type : String
     },
-    comment : {
-        type : Object
+    comments : {
+        type : Array,
+        default : []
     }
 }, {timestamps : true});
 

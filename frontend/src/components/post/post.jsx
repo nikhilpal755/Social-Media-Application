@@ -1,4 +1,4 @@
-import React, { useState , useEffect, useContext} from 'react'
+import React, { useState , useEffect, useContext, useRef, forwardRef} from 'react'
 
 // Cards
 import Box from '@mui/material/Box';
@@ -14,14 +14,14 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 
+
 import axios  from 'axios';
 import {format} from "timeago.js";
 import {Link} from "react-router-dom";
 import { AuthContext } from '../../context/authContext';
 
 import { Modal, Typography  } from '@mui/material';
-
-
+import CommentSection from './postComments';
 
 
 
@@ -37,7 +37,8 @@ export default function Post({ post }) {
   const [heartClick, setHeartClick] = useState(false); 
   const [openModal , setOpenModal] = useState(false);
 
-
+  const [openComments , setOpenComments] = useState(false);
+ 
 
   useEffect(() => {
     setIsLiked(post.likes.includes(user._id));
@@ -66,12 +67,10 @@ export default function Post({ post }) {
     setHeartClick(!heartClick);
   }
 
-
   const handleDeletePost = () =>{
     setOpenModal(true);
   }
   
- 
 
   const handleYesModalClick = async() =>{
     // delete the post
@@ -97,6 +96,7 @@ export default function Post({ post }) {
     borderRadius: 3
   };
 
+ 
 
   return (
 
@@ -150,10 +150,15 @@ export default function Post({ post }) {
 
               <span className="postLikeCounter">{likes} likes </span>
             </div>
+
             <div className="postBottomRight">
-              <span className="postCommentText">{post.comment === 1 ? " 1 comment" : `${post.comment} comments`}</span>
+              <span className="postCommentText" onClick={() => setOpenComments(!openComments)}>{post.comment === 1 ? " 1 comment" : `${post.comment} comments`}</span>
             </div>
+
           </div>
+            <div className="comments">
+              {openComments && <CommentSection post={post}/>}
+            </div>
         </CardContent>
 
       </Card>
