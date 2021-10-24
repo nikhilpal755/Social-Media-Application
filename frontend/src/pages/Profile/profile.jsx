@@ -11,6 +11,8 @@ import { useParams } from 'react-router'
 
 import { useMediaQuery } from '@mui/material'
 
+
+
 import "./profile.css"
 
 
@@ -18,6 +20,7 @@ export default function Profile() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user, setUser] = useState({});
     const userName = useParams().username;
+
 
     const mediaLessthanmd = useMediaQuery('(max-width : 1100px)');
     const mediaLessthansm = useMediaQuery('(max-width : 800px)');
@@ -61,6 +64,7 @@ export default function Profile() {
                         <div className="profileInfo">
                             <h4 className="profileInfoName" >{user.username}</h4>
                             <span className="profileInfoDesc">{user.desc}</span>
+                       
                         </div>
                     </div>
                     <div className="profileRightBottom">

@@ -43,6 +43,7 @@ export default function Navbar() {
         e.preventDefault();
         history.push(`profile/${search.current.value}`)
         search.current.value ="";
+        return;
     }
     return (
         <>

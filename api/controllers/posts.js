@@ -104,7 +104,6 @@ export const userComment = async(req, res) =>{
   // find the user -> for username , profilePicture
   // we have comment 
   const comment = req.body;
-  console.log(comment.userId ,comment.reply, comment);
   try{
     //  const user = await User.findById(comment.userId);
      const post = await Post.findById(req.params.postId);
@@ -112,7 +111,7 @@ export const userComment = async(req, res) =>{
 
      await post.updateOne({$push : {comments : comment}});
 
-     res.status(200).json(post);
+     res.status(200).json(comment);
 
   }
   catch(err){
@@ -121,41 +120,4 @@ export const userComment = async(req, res) =>{
   }
 
 
-}
-
-export const getComments = async(req, res) =>{
-  console.log(req.params.postId)
-  try{
-    const post = await Post.findById(req.params.postId);
-    console.log(post.comments.length);
-    
-   const comments = await Promise.all( 
-     post.comments.map((comment) =>{
-      let user;
-      const fetchUser = async() =>{
-        try{
-          user = await User.findById(comment.userId);
-          console.log(user);
-        }
-        catch(err){
-          console.log(err);
-        }
-      }
-      fetchUser();
-      const obj = {
-        avtaar : user.profilePicture || null,
-        username : user.username,
-        comment : comment.reply
-      }
-      console.log(obj);
-
-      return obj;
-    })
-   )
-    console.log(comments)
-    res.status(200).json(comments);
-
-  }catch(err){
-    res.status(500).json(err);
-  }
 }

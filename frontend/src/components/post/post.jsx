@@ -152,7 +152,7 @@ export default function Post({ post }) {
             </div>
 
             <div className="postBottomRight">
-              <span className="postCommentText" onClick={() => setOpenComments(!openComments)}>{post.comment === 1 ? " 1 comment" : `${post.comment} comments`}</span>
+              <span className="postCommentText" onClick={() => setOpenComments(!openComments)}>{post.comments.length === 1 ? " 1 comment" : `${post.comments.length} comments`}</span>
             </div>
 
           </div>

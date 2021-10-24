@@ -70,10 +70,9 @@ export default function ProfileInfo({ user }) {
 
       {/* hm khud ko follow nhi kr skte  */}
       {loginUser.username !== user.username &&
-        <Button variant="contained" sx={{marginLeft: 6}} onClick={handleFollowClick}>{followed ? "Following" : "follow"}   
+        <Button variant="contained" color="secondary" sx={{marginLeft: 6}} onClick={handleFollowClick}>{followed ? "Following" : "follow"}   
         {followed ?  <RemoveIcon/> : <AddIcon/>}</Button>}
-
-      <h4 className="rightbarTitle">User information</h4>
+      
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">City:</span>
@@ -92,7 +91,7 @@ export default function ProfileInfo({ user }) {
           <span className="rightbarInfoValue">{user.relationship === 1 ? "married" : "single"}</span>
         </div>
       </div>
-      <h4 className="rightbarTitle">User friends</h4>
+      <h4 className="rightbarTitle">{user.username} friends</h4>
       <div className="rightbarFollowings">
       
         {
