@@ -14,7 +14,7 @@ import { useHistory } from "react-router";
 
 import { AuthContext } from "../../context/authContext";
 import TempararyDrawer from "../../components/Drawer/drawer"
-import { useContext, useState } from "react";
+import { useContext, useState , useRef} from "react";
 import NavbarMenu from "./navbarmenu";
 import { StyledBadge } from "./navbarmenu";
 
@@ -27,6 +27,7 @@ export default function Navbar() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const history = useHistory();
     const [openSlider, setOpenSlider] = useState(false);
+    const search = useRef();
     
     const mediaLessthanmd = useMediaQuery('(max-width : 1100px)');
     const mediaLessthansm = useMediaQuery('(max-width : 800px)');
@@ -35,6 +36,13 @@ export default function Navbar() {
     const handleLogoutClick = () => {
         localStorage.removeItem("user");
         window.location.href = "/";
+    }
+
+    const handleSearchClick = (e) =>{
+        // find friends
+        e.preventDefault();
+        history.push(`profile/${search.current.value}`)
+        search.current.value ="";
     }
     return (
         <>
@@ -60,8 +68,9 @@ export default function Navbar() {
                         <InputBase
                             sx={{ ml: 1, flex: 1 }}
                             placeholder="Search for Friends, Vedios and More"
+                            inputRef={search}
                         />
-                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                        <IconButton type="submit" sx={{ p: '10px' }} onClick={handleSearchClick}>
                             <SearchIcon />
                         </IconButton>
 
