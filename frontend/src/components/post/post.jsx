@@ -84,7 +84,7 @@ export default function Post({ post }) {
   }
 
     
-  const style = {
+   const Style = {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -101,7 +101,7 @@ export default function Post({ post }) {
   return (
 
     <Box sx={{ minWidth: 275 }}>
-      <Card variant="outlined" className="card">
+      <Card variant="outlined" className="card" >
         <CardContent >
           <div className="postTop">
             <div className="postTopleft">
@@ -121,7 +121,7 @@ export default function Post({ post }) {
             {
                openModal &&  (
                 <Modal onClose={() => setOpenModal(false)} open={openModal}>
-                  <Box sx={style}>
+                  <Box sx={Style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                       Are you sure you want to delete this post ?
                     </Typography>

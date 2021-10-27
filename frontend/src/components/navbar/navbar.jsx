@@ -55,7 +55,7 @@ export default function Navbar() {
                         <TempararyDrawer />
                     )
                     }
-                    <Link to="/" style={{ textDecoration: "none", textShadow: "3px 3px blue", marginLeft: '10%' }}>
+                    <Link to="/" style={{ textDecoration: "none", textShadow: "3px 3px purple", marginLeft: '10%' }}>
                         <span className="logo">SocioNik</span>
                     </Link>
                 </div>

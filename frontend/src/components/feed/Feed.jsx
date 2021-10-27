@@ -27,7 +27,7 @@ function Feed({username}) {
         fetchPosts();
     }, [username , user._id])
     return (
-        <div style={{marginLeft : !mediaLessthanmd ? '5vw' : '0vw'}}>
+        <div style={{marginLeft : !mediaLessthanmd ? '5vw' : '0vw'}} >
             <div>
                 {!username && <Share/>}
                 { (user.username === username) && <Share/> }

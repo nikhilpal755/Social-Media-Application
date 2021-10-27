@@ -1,6 +1,6 @@
 import express from "express";
 
-import {getUser , updateUser , deleteUser, followUser, unfollowUser, getFriends} from "../controllers/users.js"
+import {getUser , updateUser , deleteUser, followUser, unfollowUser, getFriends, getAllUsers} from "../controllers/users.js"
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/" , getUser);
 
 // update user by id
-router.put("/:id" ,updateUser);
+router.patch("/:id" ,updateUser);
 
 // delete user by id
 router.delete("/:id",deleteUser);
@@ -21,6 +21,9 @@ router.put("/:id/unfollow" , unfollowUser);
 
 // friendsList
 router.get("/friends/:userId" , getFriends );
+
+// get all users
+router.get("/all" , getAllUsers);
 
 
 export default router; 

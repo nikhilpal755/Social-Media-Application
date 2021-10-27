@@ -29,10 +29,12 @@ export const updateUser =  async(req, res) =>{
             }
         }
         try{
+            
             const updatedUser = await User.findByIdAndUpdate(req.params.id , {$set : req.body} , {new : true});
-            return res.status(200).json("Your Account has been updated");
+
+            return res.status(200).json(updatedUser);
         }catch(err){
-            return res.status(500).send(err);
+            return res.status(400).send({err : err});
         }
 
     }else{
@@ -109,7 +111,6 @@ export const unfollowUser = async(req, res)=>{
 
 }
 
-
 // get friends
 export const getFriends = async(req, res)=>{
   try{
@@ -130,4 +131,14 @@ export const getFriends = async(req, res)=>{
   }catch(err){
     res.status(500).json(err);
   }
+}
+
+export const getAllUsers = async(req, res) =>{
+  try{
+    const users = await User.find();
+    res.status(200).json(users);
+  }catch(err){
+    res.status(500).json(err);
+  }
+
 }

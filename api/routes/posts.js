@@ -10,7 +10,7 @@ router.post("/",createPost);
 router.get("/:id", getPost);
 
 //update a post
-router.put("/:id", updatePost);
+router.patch("/:id", updatePost);
 
 //delete a post
 router.delete("/:id", deletePost);

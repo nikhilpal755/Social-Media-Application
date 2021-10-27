@@ -1,22 +1,22 @@
-import React, { useContext } from 'react'
+import React,{useContext} from 'react'
 import "./rightbar.css"
+import Users from '../Followusers/users';
+import {Typography} from "@mui/material"
 
-// import {Users} from "../../data"
-import {AuthContext} from "../../context/authContext"
-import Online from '../online/Online'
-
+import { AuthContext } from '../../context/authContext';
 
 function Rightbar() {
-    const {user} = useContext(AuthContext);
+
+   
+
     return (
         <div className="rightbar">
             <div className="rightBarTop">
 
-
-                <h4> Friends Online</h4>
+                <Typography variant='h6' component="h4"> People you may know</Typography>
                 <div className="friendsList">
 
-                    <Online  user={user}/>
+                    <Users />
                      
                 </div>
 
