@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React,{useEffect, useState, useContext} from 'react'
-import { Avatar, Card, CardContent, Divider } from '@mui/material'
+import { Avatar, Card, CardContent} from '@mui/material'
 import { AuthContext } from '../../context/authContext';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
@@ -15,11 +15,11 @@ export default function Users() {
         const fetchUsers = async()=>{
            const res = await axios.get(`/users/all`);
            console.log(res.data)
-           res.data = res.data.filter((user) => user._id !==loginUser._id)
+           res.data = res.data.filter((user) => user._id !==loginUser._id && !user.followers.includes(loginUser._id))
            setUsers(res.data);
         }
         fetchUsers();
-    },[])
+    },[loginUser._id])
 
   
     
@@ -36,7 +36,7 @@ export default function Users() {
                                     <Avatar src={user.profilePicture} alt=""></Avatar>
                                 </Link>
                                 <Link to={`/profile/${user.username}`} style={{textDecoration : 'none'}}>
-                                <   Button fullWidth color="secondary"><p>{user.username}</p></Button> 
+                                <   Button fullWidth style={{color: 'white'}}><p>{user.username}</p></Button> 
                                 </Link>
                             </div>
                         </div>

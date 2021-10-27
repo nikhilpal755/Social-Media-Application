@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     chatContainer: {
         height: "90.5vh",
         marginTop: "9.5vh",
-        display: 'flex'
+        display: 'flex',
     },
 
     chatBox: {
@@ -34,7 +34,8 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        position: 'relative'
+        position: 'relative',
+      
     },
     inputFriend: {
         width: '100%',
@@ -83,6 +84,7 @@ export default function Chat() {
 
     const [onlineUsers , setOnlineUsers] = useState([]);
     const mediaLessthanmd = useMediaQuery('(max-width: 900px)')
+
 // ------------------------ Socket IO part -----------------------------------------
     const socket = useRef();
 

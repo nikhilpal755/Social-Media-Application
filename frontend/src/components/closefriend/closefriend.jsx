@@ -1,26 +1,52 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import axios from "axios"
 import { Avatar } from '@mui/material'
-import { ListItem, ListItemButton } from '@mui/material';
+import { ListItemButton, List } from '@mui/material';
+import { AuthContext } from "../../context/authContext"
+import { Link } from 'react-router-dom';
 // dummy data
-import { Users } from '../../data'
 
 function Closefriend() {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    return (
-        <div className="closefriend">
-            {
-                Users.map(user =>{
-                  return (
-                      <ListItem key={user.id}>
-                          <ListItemButton>
-                            <Avatar alt="" src={`${PF}person/1.png`}/>
-                            <span style={{marginLeft:10}}> Nikhil</span>
-                          </ListItemButton>
-                      </ListItem>
-                  )
-                })
+
+    const { user } = useContext(AuthContext);
+
+    const [friends, setFriends] = useState([]);
+
+    // geting friend list
+    useEffect(() => {
+        const getFriends = async () => {
+            try {
+                const friendList = await axios.get(`/users/friends/${user._id}`);
+                setFriends(friendList.data);
+            } catch (err) {
+                console.log(err);
             }
-        </div>
+        }
+        getFriends();
+       
+    }, [user]);
+
+    return (
+        <>
+            <List >
+
+                {friends.map((f) => {
+                    return (
+
+                        <Link to={`/profile/${f.username}`} style={{ display: 'flex', textDecoration :'none', color: 'black', marginBottom: 20}}>
+                            <ListItemButton >
+
+                                <Avatar src={f.profilePicture} style={{marginRight : 10}}/>
+                                <p variant="h6" >{f.username}</p>
+                            </ListItemButton>
+                        </Link>
+
+
+                    )
+
+                })}
+            </List>
+        </>
     )
 }
 

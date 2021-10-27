@@ -5,7 +5,12 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { AuthContext } from "../../context/authContext"
 import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
+import MessageIcon from '@mui/icons-material/Message';
+import { useHistory } from 'react-router';
+
+
 
 
 
@@ -17,6 +22,7 @@ export default function ProfileInfo({ user }) {
   const [friends, setFriends] = useState([]);
   const [followed, setFollowed] = useState(true);
   const [followersCount, setFollowersCount] = useState(0);
+  const history = useHistory();
 
   // checking if loginUser is following user or not 
   useEffect(() => {
@@ -62,16 +68,43 @@ export default function ProfileInfo({ user }) {
     }
   }
 
+  const handleMessageClick = async() =>{
+    // intitiate a conversation
+    const conversation = {
+      senderId : loginUser._id,
+      receiverId : user._id
+    }
+    try{
+      const oldConversations = await axios.get(`/conversations/find/${loginUser._id}/${user._id}`)
+      console.log(oldConversations);
 
+      if(oldConversations.data.length === 0){
 
+        const newConversation = await axios.post('/conversations',conversation)
+        console.log(newConversation.data)
+      }
+      history.push('/chat')
+
+    }catch(err){
+      console.log(err);
+    }
+
+  }
 
   return (
     <div className="profileInfo">
 
       {/* hm khud ko follow nhi kr skte  */}
-      {loginUser.username !== user.username &&
-        <Button variant="contained" color="secondary" sx={{marginLeft: 6}} onClick={handleFollowClick}>{followed ? "Following" : "follow"}   
-        {followed ?  <RemoveIcon/> : <AddIcon/>}</Button>}
+
+      {loginUser.username !== user.username && 
+
+        <Button variant="contained" color="secondary" sx={{marginLeft: 6 ,marginBottom :2}} onClick={handleFollowClick}>{followed ? "Following" : "follow"}   
+        {followed ?  <RemoveIcon/> : <AddIcon/>}</Button>
+      }
+        {followed && (
+          <Button variant="contained" color="secondary" size="medium" sx={{marginLeft: 6 ,marginBottom :2}} onClick={handleMessageClick}>Chat<MessageIcon/></Button>
+        )}
+  
       
       <div className="rightbarInfo">
         <div className="rightbarInfoItem">
@@ -88,7 +121,7 @@ export default function ProfileInfo({ user }) {
         </div>
         <div className="rightbarInfoItem">
           <span className="rightbarInfoKey">Relationship:</span>
-          <span className="rightbarInfoValue">{user.relationship === 1 ? "married" : "single"}</span>
+          <span className="rightbarInfoValue">{user.relationship}</span>
         </div>
       </div>
       <h4 className="rightbarTitle">{user.username} friends</h4>
@@ -98,7 +131,9 @@ export default function ProfileInfo({ user }) {
           friends.map((friend) =>{
             return (
               <div className="rightbarFollowing" key={friend._id}>
+                <Link to={`/profile/${friend.username}`}>
                 <img src={friend.profilePicture || `${PF}person/noavtaar.png`} alt="friendImage" className="rightbarFollowingImg"/>
+                </Link>
                 <span className="rightbarFollowingName">{friend.username}</span>
               </div>
             )

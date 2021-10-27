@@ -51,5 +51,17 @@ router.get("/find/:firstUserId/:secondUserId" , async(req, res) =>{
 })
 
 
+//delete conversation
+router.delete("/:id", async(req,res) =>{
+
+    try{
+        const deletedConversation = await Conversation.findByIdAndDelete(req.params.id);
+        res.status(200).json(deletedConversation)
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+})
 
 export default router;

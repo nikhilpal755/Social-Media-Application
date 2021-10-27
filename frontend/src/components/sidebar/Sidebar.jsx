@@ -44,7 +44,7 @@ const useStyles = makeStyles(() =>({
         position: 'fixed',
         height: '100vh',
         zIndex : '100',
-        overflowY : 'scroll',
+        overflowY : "scroll",
         backgroundColor : "#dde1e7"
     },
     listIcon: {
@@ -69,7 +69,7 @@ function Sidebar() {
     const history = useHistory();
     const mediaLessthanmd = useMediaQuery('(max-width: 1100px)')
     return (
-        <div className={classes.sidebar} style={{  width :mediaLessthanmd ? '40vw' : '20vw'}}>
+        <div className={classes.sidebar} style={{  width :mediaLessthanmd ? '40vw' : '20vw', height: '100vh', overflowY: 'scroll'}}>
                 <List>
                     <ListItem disablePadding >
                         <ListItemButton onClick={() => history.push("/")}>
@@ -132,7 +132,8 @@ function Sidebar() {
             <Button variant="contained" className={classes.btn}>Show More</Button>
             <Divider />
             
-            <Closefriend/>
+                <Closefriend/>
+            
         
           
         </div>

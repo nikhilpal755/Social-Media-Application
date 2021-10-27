@@ -1,9 +1,8 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import "./rightbar.css"
 import Users from '../Followusers/users';
 import {Typography} from "@mui/material"
 
-import { AuthContext } from '../../context/authContext';
 
 function Rightbar() {
 
