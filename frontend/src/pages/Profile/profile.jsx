@@ -14,9 +14,10 @@ import { useMediaQuery } from '@mui/material'
 import { AuthContext } from '../../context/authContext';
 import { useContext } from 'react'
 
-
-
 import "./profile.css"
+
+
+
 
 
 export default function Profile() {
@@ -46,9 +47,9 @@ export default function Profile() {
 
 
     return (
-        <div>
+        <div >
             <Navbar />
-            <div className="profile">
+            <div className="profile" >
                 {!mediaLessthanmd && <Sidebar />}
                 <div style={{
                     flex: !mediaLessthanmd ? '9' : '12',

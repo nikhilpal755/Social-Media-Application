@@ -23,6 +23,7 @@ import "./share.css";
 
 
 
+
 export default function Share() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -100,7 +101,10 @@ return (
 
 
         <img className="shareProfileImg" src={user.profilePicture || PF + "person/noavtaar.png"} alt="" />
-        {imageUrl && <img src={imageUrl} alt=""  width="200" height="200"/>}
+        {imageUrl && 
+          <img src={imageUrl} alt=""  width="200" height="200"/>
+    
+        }
         <TextField id="standard-basic" label={`What's in your mind ${user.username} ?`} variant="standard" className="inputField" inputRef={desc} />
 
         <form onSubmit={handleSubmit} style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly", marginTop: 10 }}>
