@@ -47,22 +47,14 @@ const useStyles = makeStyles(() =>({
         overflowY : "scroll",
         backgroundColor : "#dde1e7"
     },
-    listIcon: {
-        // display : 'flex',    
-        marginLeft : '4%',
-        padding: '4% 0 4% 0',
-        color : 'black'
-
-
+    listIcon : {
+        color : 'black',
     },
-    btn : {
-        margin : "20px 30px 30px 20px",
-        backgroundColor : 'rgb(68, 68, 68)'
-    }
-    
 
 
 }))
+
+
 
 function Sidebar() {
     const classes = useStyles();
@@ -73,31 +65,35 @@ function Sidebar() {
                 <List>
                     <ListItem disablePadding >
                         <ListItemButton onClick={() => history.push("/")}>
-                            <ListItemIcon className={classes.listIcon}>
-                                <RssFeedIcon />
+                            <ListItemIcon  style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}}>
+                                <RssFeedIcon  className={classes.listIcon}/>
                             </ListItemIcon>
                             <ListItemText primary="Feed" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon className={classes.listIcon}>
-                                <PlayCircleOutlineIcon />
+                            <ListItemIcon style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}}>
+                                <PlayCircleOutlineIcon  className={classes.listIcon}/>
                             </ListItemIcon>
                             <ListItemText primary="Vedios" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => history.push("/chat")}>
-                            <ListItemIcon className={classes.listIcon}>
-                                <ChatIcon />
+                            <ListItemIcon style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}} >
+                                <ChatIcon className={classes.listIcon}/>
                             </ListItemIcon>
                             <ListItemText primary="Chats" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon className={classes.listIcon}>
+                            <ListItemIcon style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}}>
                                 <GroupIcon />
                             </ListItemIcon>
                             <ListItemText primary="Groups" />
@@ -105,31 +101,35 @@ function Sidebar() {
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon className={classes.listIcon}>
-                                <BookmarkIcon />
+                            <ListItemIcon style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}}>
+                                <BookmarkIcon className={classes.listIcon} />
                             </ListItemIcon>
                             <ListItemText primary="Bookmark" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon className={classes.listIcon}   >
-                                <EventIcon />
+                            <ListItemIcon  style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}}>
+                                <EventIcon className={classes.listIcon}/>
                             </ListItemIcon>
                             <ListItemText primary="Events" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemIcon className={classes.listIcon}   >
-                                <SchoolIcon />
+                            <ListItemIcon style={{minWidth : '25px',padding: '4% 3% 5% 0',
+        marginLeft : '4%',}}   >
+                                <SchoolIcon className={classes.listIcon} />
                             </ListItemIcon>
                             <ListItemText primary="Courses" />
                         </ListItemButton>
                     </ListItem>
                 </List>
      
-            <Button variant="contained" className={classes.btn}>Show More</Button>
+            <Button variant="contained" style={{    margin : "20px 30px 30px 20px",
+        backgroundColor : 'rgb(68, 68, 68)'}}>Show More</Button>
             <Divider />
             
                 <Closefriend/>

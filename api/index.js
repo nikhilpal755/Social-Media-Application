@@ -9,6 +9,7 @@ import Posts from "./routes/posts.js";
 import Message from "./routes/message.js"
 import Conversation from "./routes/conversation.js"
 import cors from "cors";
+import path from "path"
 
 
 
@@ -39,11 +40,22 @@ app.use("/api/posts", Posts);
 app.use("/api/conversations", Conversation);
 app.use("/api/messages", Message);
 app.use(cors());    
+// ----------------- deployment ---------------
+
+const __dirname  = path.resolve();
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname,'/frontend/build')))
+    app.get('*',(req, res) =>{
+        res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
+    })
+
+}else{
+
+    app.get("/" , (req, res) =>{
+        res.send("Root route of app")   
+    })
+
+}    
 
 
-
-
-app.get("/" , (req, res) =>{
-    res.send("Root route of app")   
-})
 
