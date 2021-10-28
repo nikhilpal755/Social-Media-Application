@@ -94,7 +94,7 @@ function Sidebar() {
                         <ListItemButton>
                             <ListItemIcon style={{minWidth : '25px',padding: '4% 3% 5% 0',
         marginLeft : '4%',}}>
-                                <GroupIcon />
+                                <GroupIcon className={classes.listIcon} />
                             </ListItemIcon>
                             <ListItemText primary="Groups" />
                         </ListItemButton>
