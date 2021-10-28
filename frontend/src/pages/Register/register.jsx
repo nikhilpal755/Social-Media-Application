@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { useHistory } from "react-router";
-import { useRef } from "react";
+import { useRef ,useState} from "react";
 import axios from "axios";
 
 const theme = createTheme();
@@ -39,23 +39,55 @@ const CssTextField = withStyles({
 
 export default function Register() {
   const mediaLessthanmd = useMediaQuery(theme.breakpoints.down("md"));
-  const userName = useRef();
-  const email = useRef();
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const password = useRef();
   const confirmPassword = useRef();
   const history = useHistory();
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userName.current.value)
+    // console.log(userName.current.value)
+
+    // ----------------- If username or email already exists -------------------------
+    let wrongUsername = false;
+    let wrongEmail = false;
+    try{
+      const users = await axios.get('/users/all');
+      console.log(users.data)
+      users.data.map(u =>{
+        if(u.username === userName){
+          wrongUsername = true;
+        }
+        if(u.email === email){
+          wrongEmail = true;
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
+    if(wrongUsername){
+      return ;
+    }
+    if(wrongEmail){
+      return;
+    }
+
+
+    //------------------------- password checking-----------------------------
+    
     if (password.current.value !== confirmPassword.current.value) {
       confirmPassword.current.setCustomValidity(
         "password is not matching... Please write carefully"
       );
     } else {
+
+      //------------------ Creating a user -----------------------------------
       const user = {
-        username: userName.current.value,
-        email: email.current.value,
+        username: userName,
+        email: email,
         password: password.current.value
       };
       try {
@@ -141,7 +173,7 @@ export default function Register() {
                         }
                       }}
                       type="text"
-                      inputRef={userName}
+                      onChange={(e) =>setUserName(e.target.value)}
                     />
                   </Grid>
 
@@ -163,7 +195,7 @@ export default function Register() {
                         }
                       }}
                       type="email"
-                      inputRef={email}
+                      onChange={(e) =>setEmail(e.target.value)}
                     />
                   </Grid>
 

@@ -83,6 +83,7 @@ export default function Profile() {
 
                         </Grid>
                         {/* <hr/> */}
+                        
                         <Grid item xs={12} >
                             <Feed username={userName} />
                         </Grid>

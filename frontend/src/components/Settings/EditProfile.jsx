@@ -91,8 +91,8 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
     
         const profile = {
             userId : loginUser._id,
-            coverPicture :  coverUrl  || loginUser.coverPicture,
-            profilePicture : profileUrl || loginUser.profilePicture,
+            coverPicture :  coverUrl ==="" ?  loginUser.coverPicture : coverUrl,
+            profilePicture : profileUrl ==="" ?  loginUser.profilePicture : profileUrl,
             desc: description.current.value || loginUser.desc,
             city : city.current.value || loginUser.city,
             relationship : status || loginUser.relationship

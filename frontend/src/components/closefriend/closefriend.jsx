@@ -23,18 +23,21 @@ function Closefriend() {
             }
         }
         getFriends();
+        return () =>{
+          setFriends([])
+        }
        
     }, [user]);
 
     return (
         <>
-            <List >
+            <List style={{marginBottom : 50}}>
 
                 {friends.map((f) => {
                     return (
 
                         <Link to={`/profile/${f.username}`} style={{ display: 'flex', textDecoration :'none', color: 'black', marginBottom: 20}}>
-                            <ListItemButton >
+                            <ListItemButton key={f._id}>
 
                                 <Avatar src={f.profilePicture} style={{marginRight : 10}}/>
                                 <p variant="h6" >{f.username}</p>

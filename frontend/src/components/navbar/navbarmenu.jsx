@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -9,6 +8,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
 import Badge from "@mui/material/Badge";
 import { IconButton } from '@mui/material';
+import { useHistory } from 'react-router';
 
 
 
@@ -29,6 +29,7 @@ export default function NavbarMenu() {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    const history = useHistory();
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -54,7 +55,7 @@ export default function NavbarMenu() {
                 }}
             >
                
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => history.push('/chat')}>
                         <p>Friends</p>
                         <IconButton >
                             <StyledBadge badgeContent={4} color="secondary">
@@ -62,7 +63,7 @@ export default function NavbarMenu() {
                             </StyledBadge>
                         </IconButton>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => history.push('/chat')}>
                     <p>Notifications</p>
                     <IconButton >
                         <StyledBadge badgeContent={4} color="secondary">
@@ -70,7 +71,7 @@ export default function NavbarMenu() {
                         </StyledBadge>
                     </IconButton>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => history.push('/chat')}>
                     <p>Messages</p>
                     <IconButton >
                         <StyledBadge badgeContent={4} color="secondary">
