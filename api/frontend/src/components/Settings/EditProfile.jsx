@@ -1,5 +1,5 @@
 import React,{useState, useRef, useEffect} from 'react'
-import { Modal, Box, Typography } from '@mui/material'
+import { Modal, Box, Typography} from '@mui/material'
 import { MenuItem ,Select} from '@mui/material'
 import { Button, TextField } from '@mui/material'
 import axios from 'axios'
@@ -29,6 +29,8 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
     const description = useRef();
     const city = useRef();
 
+
+
  
 
     const upload_preset = "ufz0uowv";
@@ -37,8 +39,7 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
     useEffect(() => {
         if (!coverPicture)return;
 
-    
-    
+       
         const postOnCloudinary = async () => {
           const formData = new FormData();
           formData.append("file", coverPicture);
@@ -52,6 +53,7 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
             .then((res) => {
               console.log(res);
               setCoverUrl(res.secure_url);
+            
             })
             .catch((err) => console.log(err));  
           }
@@ -76,13 +78,13 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
             .then((res) => {
               console.log(res);
               setProfileUrl(res.secure_url);
+            
             })
             .catch((err) => console.log(err));  
           }
           postOnCloudinary();
      }, [profilePicture])
 
-    
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -128,6 +130,7 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
 
                             <Typography variant='h6' component="h5" style={{ paddingRight: '10px' }}> Cover : </Typography>
                             <input type="file" onChange={handleCoverPicture}/>
+                         
 
                         </div>
                         <div style={{ display: 'flex' }}>
