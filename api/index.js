@@ -9,8 +9,10 @@ import Posts from "./routes/posts.js";
 import Message from "./routes/message.js"
 import Conversation from "./routes/conversation.js"
 import cors from "cors";
-import path from "path"
+// import path from "path"
 
+// loading a .env file
+dotenv.config();
 
 
 
@@ -19,8 +21,10 @@ const port = process.env.PORT || 8000;
 app.listen(port , () => console.log(`app is running on port ${port}`));
 
 
-// loading a .env file
-dotenv.config();
+
+    app.get("/" , (req, res) =>{
+        res.send("Root route of app")   
+    })
 
 
 // connection to mongoDB atlas
@@ -42,20 +46,16 @@ app.use("/api/messages", Message);
 app.use(cors());    
 // ----------------- deployment ---------------
 
-const __dirname  = path.resolve();
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname,'/frontend/build')))
-    app.get('*',(req, res) =>{
-        res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
-    })
+// const __dirname  = path.resolve();
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static(path.join(__dirname,'/frontend/build')))
+//     app.get('*',(req, res) =>{
+//         res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
+//     })
 
-}else{
+// }else{
 
-    app.get("/" , (req, res) =>{
-        res.send("Root route of app")   
-    })
-
-}    
+// }    
 
 
 
