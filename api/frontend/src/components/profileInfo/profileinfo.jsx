@@ -34,7 +34,7 @@ export default function ProfileInfo({ user }) {
   useEffect(() => {
     const getFriends = async () =>{
       try{
-        const friendList = await axios.get(`/users/friends/${user._id}`);
+        const friendList = await axios.get(`/api/users/friends/${user._id}`);
         setFriends(friendList.data);
       }catch(err){
         console.log(err);
@@ -48,13 +48,13 @@ export default function ProfileInfo({ user }) {
       if(followed){
         //unfollow
     
-        await axios.put(`/users/${user._id}/unfollow` , {
+        await axios.put(`/api/users/${user._id}/unfollow` , {
           userId: loginUser._id
         });
         dispatch({type : "UNFOLLOW", payload : user._id})
         setFollowersCount(followersCount - 1);
       }else{
-         await axios.put(`/users/${user._id}/follow` , {
+         await axios.put(`/api/users/${user._id}/follow` , {
            userId : loginUser._id
          })
          dispatch({type : "FOLLOW", payload : user._id});
@@ -75,12 +75,12 @@ export default function ProfileInfo({ user }) {
       receiverId : user._id
     }
     try{
-      const oldConversations = await axios.get(`/conversations/find/${loginUser._id}/${user._id}`)
+      const oldConversations = await axios.get(`/api/conversations/find/${loginUser._id}/${user._id}`)
       console.log(oldConversations);
 
       if(oldConversations.data.length === 0){
 
-        const newConversation = await axios.post('/conversations',conversation)
+        const newConversation = await axios.post('/api/conversations',conversation)
         console.log(newConversation.data)
       }
       history.push('/chat')

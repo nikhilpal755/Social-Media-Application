@@ -13,7 +13,7 @@ export default function Users() {
     
     useEffect(() =>{
         const fetchUsers = async()=>{
-           const res = await axios.get(`/users/all`);
+           const res = await axios.get(`/api/users/all`);
            console.log(res.data)
            res.data = res.data.filter((user) => user._id !==loginUser._id && !user.followers.includes(loginUser._id))
            setUsers(res.data);

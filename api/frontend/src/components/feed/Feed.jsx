@@ -16,8 +16,8 @@ function Feed({username}) {
 
     useEffect(() => {
         const fetchPosts = async() =>{
-           const res = username ? await axios.get(`/posts/profile/${username}` )
-            : await axios.get(`posts/timeline/${user._id}`);
+           const res = username ? await axios.get(`/api/posts/profile/${username}` )
+            : await axios.get(`/api/posts/timeline/${user._id}`);
 
             // console.log(res.data);
            setPosts(res.data.sort((p1,p2) =>{

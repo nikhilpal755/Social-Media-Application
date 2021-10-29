@@ -127,7 +127,7 @@ export default function Chat() {
     useEffect(() => {
         const getConversations = async () => {
             try {
-                const res = await axios.get(`/conversations/${user._id}`)
+                const res = await axios.get(`/api/conversations/${user._id}`)
                 // console.log(res.data);
                 setConversation(res.data);
             }
@@ -142,7 +142,7 @@ export default function Chat() {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await axios.get(`/messages/${currentChat._id}`);
+                const res = await axios.get(`/api/messages/${currentChat._id}`);
                 // console.log(res.data);
                 setMessages(res.data);
             } catch (err) {
@@ -175,7 +175,7 @@ export default function Chat() {
             text : newMessage.current.value
         })
         try{
-            const res = await axios.post('/messages' , message);
+            const res = await axios.post('/api/messages' , message);
             setMessages([...messages, res.data]);
             newMessage.current.value="";
         }catch(err){

@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
 
   console.log(desc, desc.current.value);
   try {
-    await axios.post("/posts", newPost);
+    await axios.post("/api/posts", newPost);
 
     console.log("bn gyi");
     window.location.reload();

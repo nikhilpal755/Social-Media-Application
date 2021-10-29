@@ -46,7 +46,7 @@ export default function Post({ post }) {
   
   useEffect(() => {
     const fetchUser = async() =>{
-      const res = await axios.get(`/users?userId=${post.userId}`);
+      const res = await axios.get(`/api/users?userId=${post.userId}`);
       setuserInfo(res.data);
     }
     fetchUser();
@@ -56,7 +56,7 @@ export default function Post({ post }) {
   const  handleLike = async()=>{
     if(post.userId === user._id)return;
     try{
-      await axios.put(`/posts/${post._id}/like` , {userId : user._id} )
+      await axios.put(`/api/posts/${post._id}/like` , {userId : user._id} )
     }catch(err){}
 
     setLikes(isliked ? likes -1 : likes + 1);
@@ -75,7 +75,7 @@ export default function Post({ post }) {
   const handleYesModalClick = async() =>{
     // delete the post
     try{
-      await axios.delete(`/posts/${post._id}` , {params : {userId : user._id}});
+      await axios.delete(`/api/posts/${post._id}` , {params : {userId : user._id}});
       setOpenModal(false);
       window.location.reload();
     }catch(err){

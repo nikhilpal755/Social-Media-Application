@@ -100,7 +100,7 @@ export default function EditProfile({openModal, setOpenModal, loginUser}) {
             relationship : status || loginUser.relationship
         }
         try{
-           const res =  await axios.patch(`/users/${loginUser._id}`, profile)
+           const res =  await axios.patch(`/api/users/${loginUser._id}`, profile)
            console.log(res.data);
            localStorage.removeItem("user");
            localStorage.setItem("user", JSON.stringify(res.data))

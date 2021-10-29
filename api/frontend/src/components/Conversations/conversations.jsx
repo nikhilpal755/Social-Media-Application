@@ -17,7 +17,7 @@ export default function Conversations({conversation , loginUser}) {
 
         const getFriend = async ()=>{
             try{
-                const res = await  axios(`/users?userId=${friendId}`);
+                const res = await  axios(`/api/users?userId=${friendId}`);
                 // console.log(res.data);
                 setFriend(res.data);
             }catch(err){
@@ -30,7 +30,7 @@ export default function Conversations({conversation , loginUser}) {
     const handleDeleteConversation = async(e) =>{
         e.preventDefault()
         try{
-            await axios.delete(`/conversations/${conversation._id}`)
+            await axios.delete(`/api/conversations/${conversation._id}`)
            console.log('conversation deleted');
            window.location.reload();
         }catch(err){

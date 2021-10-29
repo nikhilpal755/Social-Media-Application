@@ -69,7 +69,7 @@ export default function Message({ message, own }) {
     useEffect(() =>{
         const getAvtaar = async() =>{
             try{
-               const res = await axios.get(`/users?userId=${message.sender}`);
+               const res = await axios.get(`/api/users?userId=${message.sender}`);
             //    console.log(res.data);
                setAvtaar(res.data.profilePicture);
                setUserName(res.data.username);

@@ -55,7 +55,7 @@ export default function Register() {
     let wrongUsername = false;
     let wrongEmail = false;
     try{
-      const users = await axios.get('/users/all');
+      const users = await axios.get('/api/users/all');
       console.log(users.data)
       users.data.map(u =>{
         if(u.username === userName){
@@ -91,7 +91,7 @@ export default function Register() {
         password: password.current.value
       };
       try {
-        await axios.post("/auth/register", user);
+        await axios.post("/api/auth/register", user);
         history.push("/login");
       } catch (err) {
         console.log(err);

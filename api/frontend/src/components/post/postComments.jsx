@@ -51,7 +51,7 @@ export default function CommentSection({ post }) {
     }
     
     try {
-      const res = await axios.post(`/posts/${post._id}/comment`, obj);
+      const res = await axios.post(`/api/posts/${post._id}/comment`, obj);
       console.log(res.data);
       comment.current.value = "";
       setCommented(true);
