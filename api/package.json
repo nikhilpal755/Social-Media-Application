@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +19,7 @@
     "formidable": "^1.2.2",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.14"
   }
 }
